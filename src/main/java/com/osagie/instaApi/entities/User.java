@@ -1,4 +1,4 @@
-package com.osagie.instaApi.Entity;
+package com.osagie.instaApi.entities;
 
 import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
