@@ -4,9 +4,9 @@ import com.osagie.instaApi.dto.UserDto;
 import com.osagie.instaApi.entities.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -15,20 +15,22 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserControllers {
-    private SmartValidator validator;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(@RequestBody UserDto userDto, BindingResult bindingResult){
-        return null;
+    public ResponseEntity<List<User>> getAllUsers(){
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public ResponseEntity<User> saveUser(){
-        return null;
+    public ResponseEntity<User> saveUser(@RequestBody @Valid User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return null;
+        }
+        return ResponseEntity.ok(user);
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<User> getUserByUserId(@PathVariable("userId") String userId){
-        return null;
+        return ResponseEntity.notFound().build();
     }
 }

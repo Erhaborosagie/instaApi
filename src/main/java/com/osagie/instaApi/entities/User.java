@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity(name = "users")
 @Data
@@ -17,16 +15,19 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
     @Column(unique = true)
     private String userId;
 
+    @NotNull
+    @Size(min = 2, message = "At least two characters")
     @Column(unique = true)
     private String userName;
 
+    @NotNull
     private String name;
 
     private String profileImage;
